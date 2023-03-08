@@ -1,28 +1,31 @@
+import { MorseCode, MorseCodeDic } from "./morse-code.js"; 
 
-function init(){
-    olert('Hello World!');
-    rene(answerMe(), ``);
-    console.log(`${add(7,17)}`)
-    addComplicated(7 , 17, res => `result = ${res}`);
+const dic = new MorseCodeDic(); 
+
+function stringifyMorse(morse) {
+    let str = '';
+    for (let m of morse) {
+        str += `${m}_`;
+    }
+    return str.slice(0, -1);
 }
 
-function answerMe(question){
-    console.log(`The answer to ${question} is 42`);
-}
-function rene (answerFunc, actualQuestion){
-    const question = `I hob o frog und zwor ${actualQuestion}`;
-    answerFunc(question);
-}
-
-function add(a, b){
-    return a + b;
+function convertTextToMorse() {
+    const textBox = document.getElementById('textIn');
+    const val = textBox.value;
+    if (val === undefined || val === null || val === '') {
+        return;
+    }
+    const morse = dic.convertTextToMorse(val);
+    document.getElementById('morseOut').innerHTML = stringifyMorse(morse); 
 }
 
-function addComplicated(a, b, gimmeResult){
-    const result = a + b;
-    gimmeResult(result);
+function init() {
+    document.getElementById('convBtn').addEventListener('click', () => { 
+        convertTextToMorse();
+    })
 }
 
-document.addEventListener('DDMContestLoaded', event =>{
+document.addEventListener('DOMContentLoaded', (event) => {
     init();
-})
+});
