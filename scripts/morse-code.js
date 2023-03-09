@@ -1,14 +1,19 @@
-export class MorseCodeDic {
-    toMorse;
+export class MorseCodeDic { 
+	toMorse;
     toStr;
+
     constructor() {
         [this.toMorse, this.toStr] = MorseCodeDic.initMaps();
     }
+
     convertMorseToText(morse) {
         let text = '';
+
         // TODO!
+
         return text;
     }
+
     convertTextToMorse(text) {
         text = text.toUpperCase();
         const morse = [];
@@ -20,10 +25,11 @@ export class MorseCodeDic {
         }
         return morse;
     }
+
     static initMaps() {
         const short = Sign.Short;
         const long = Sign.Long;
-        const toMorse = new Map([
+        const toMorse = new Map([ 
             ['A', new MorseCode([short, long])],
             ['B', new MorseCode([long, short, short, short])],
             ['C', new MorseCode([long, short, long, short])],
@@ -62,6 +68,7 @@ export class MorseCodeDic {
             ['9', new MorseCode([long, long, long, long, short])],
             [' ', new MorseCode([Sign.Pause])]
         ]);
+
         const toStr = new Map();
         for (let [k, v] of toMorse) {
             const key = v.getKey();
@@ -70,17 +77,20 @@ export class MorseCodeDic {
         if (toMorse.size !== toStr.size) {
             throw new Error('Conversion error');
         }
+
         return [toMorse, toStr];
     }
 }
-export class MorseCode {
+
+export class MorseCode { 
     constructor(signs) {
         if (signs.length === 0) {
             throw new Error('Invalid number of signs');
         }
         this.signs = signs;
     }
-    getKey() {
+
+    getKey() { 
         let keyStr = '';
         for (let s of this.signs) {
             switch (s) {
@@ -99,6 +109,7 @@ export class MorseCode {
         }
         return parseInt(keyStr);
     }
+
     toString() {
         let str = '';
         for (let s of this.signs) {
@@ -121,7 +132,8 @@ export class MorseCode {
         return str;
     }
 }
-export const Sign = Object.freeze({
+
+export const Sign = Object.freeze({ 
     Short: Symbol('short'),
     Long: Symbol('long'),
     Pause: Symbol('pause')
