@@ -7,11 +7,29 @@ export class MorseCodeDic {
     }
 
     convertMorseToText(morse) {
-        let text = '';
-
-        // TODO!
-
-        return text;
+        let str = '';
+        for (let m of morse) {
+            let st = '';
+            for (let s of m){
+                if (s === '.' || s === '•'){
+                    st += "1";
+                }
+                else if (s === '-' || s === '—'){
+                    st += "2";
+                }
+                else if (s === '/' || s === '_'){
+                    st += "0";
+                }
+                else if (s === ' '){
+                    continue;
+                }
+                else {
+                    throw new Error('unknown code');
+                }
+            }
+            str += this.toStr.get(parseInt(st))
+        }
+        return str;
     }
 
     convertTextToMorse(text) {

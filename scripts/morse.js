@@ -1,6 +1,6 @@
 import { MorseCode, MorseCodeDic } from "./morse-code.js"; 
 
-const dic = new MorseCodeDic(); 
+const dic = new MorseCodeDic();
 
 function stringifyMorse(morse) {
     let str = '';
@@ -17,12 +17,27 @@ function convertTextToMorse() {
         return;
     }
     const morse = dic.convertTextToMorse(val);
-    document.getElementById('morseOut').innerHTML = stringifyMorse(morse); 
+    document.getElementById('morseOut').innerHTML = stringifyMorse(morse);
+}
+
+function convertMorseToText() {
+    const textBox = document.getElementById('morseIn');
+    const val = textBox.value;
+    let splitArr;
+    if(val.includes('_')){
+        splitArr = val.split('_');
+    }else{
+        splitArr = val.split(' ');
+    }
+    document.getElementById('textOut').innerHTML = dic.convertMorseToText(splitArr);
 }
 
 function init() {
     document.getElementById('convBtn').addEventListener('click', () => { 
         convertTextToMorse();
+    })
+    document.getElementById('convTxtBtn').addEventListener('click', () => {
+        convertMorseToText();
     })
 }
 
