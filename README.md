@@ -1,2 +1,2 @@
-# MorseCodeTransloter
-A translator who can translate the MorseCode language into English. Written in JavaScript.
+# MorseCodeTranslator
+A translator who can translate the MorseCode language. Written in JavaScript.
